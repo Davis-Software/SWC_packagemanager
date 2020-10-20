@@ -1,2 +1,5 @@
 # Project exclude paths
 /venv/
+/build/
+/dist/
+/swcpm.egg-info/
