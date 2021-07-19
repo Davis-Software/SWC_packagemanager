@@ -3,7 +3,8 @@ import click
 import tempfile
 import platform
 from pathlib import Path
-from swcpm.tools.loc_db import LocationDatabase
+
+from .tools import loc_db
 
 
 _param_verbose = False
@@ -16,7 +17,7 @@ constant_tempPATH = tempfile.gettempdir()
 constant_defaultAppInstallPATH = "C:\\Program Files\\SWC" if platform.system() == "win32" else "/usr/swc"
 constant_defaultModInstallPATH = os.path.join(str(Path.home()), "SWC", "Packages")
 
-location_database = LocationDatabase()
+location_database = loc_db.LocationDatabase()
 
 
 def get_option_verbose():
