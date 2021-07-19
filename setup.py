@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-with open("/home/davis/Downloads/swcpm-0.1.1/README.md", "r") as rm:
+with open("./README.md", "r") as rm:
     long_desc = rm.read()
 
 
