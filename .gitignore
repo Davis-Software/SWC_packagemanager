@@ -4,3 +4,4 @@
 /dist/
 /swcpm.egg-info/
 /.idea/
+release.sh
