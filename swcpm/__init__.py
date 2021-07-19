@@ -48,7 +48,7 @@ constant_tempPATH = tempfile.gettempdir()
 constant_defaultAppInstallPATH = "C:\\Program Files\\SWC" if platform.system() == "win32" else "/usr/swc"
 constant_defaultModInstallPATH = os.path.join(str(Path.home()), "SWC", "Packages")
 
-location_database = loc_db.LocationDatabase()
+location_database = LocationDatabase()
 
 
 def get_option_verbose():
