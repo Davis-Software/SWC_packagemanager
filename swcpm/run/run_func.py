@@ -5,7 +5,7 @@ from click import echo
 from swcpm import location_database
 
 
-def run_func(package):
+def run_func(package, args):
     install_dir = location_database.get_location(package)
     if not install_dir:
         echo(f"Package '{package}' is not installed")
@@ -22,6 +22,9 @@ def run_func(package):
     if execution_type in ["cmd", "cmd-f", "app"]:
         os.system(execution_target)
     elif execution_type == "python":
-        os.system(f"{'python' if platform.system() == 'win32' else 'python3'} {os.path.join(install_dir, execution_target)}.py")
+        arg_li = list()
+        for arg in args:
+            arg_li.append(arg)
+        os.system(f"{'python' if platform.system() == 'win32' else 'python3'} {os.path.join(install_dir, execution_target)}.py " + " ".join(arg_li))
     else:
         echo(f"Unknown package type: '{execution_type}' - Target '{execution_target}' is not executable")

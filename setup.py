@@ -7,7 +7,7 @@ with open("./README.md", "r") as rm:
 
 setup(
     name='swcpm',
-    version='0.1.5',
+    version='0.1.6',
     packages=find_packages(),
     license='MIT',
     description='Manage Software City Packages',

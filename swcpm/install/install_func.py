@@ -7,12 +7,16 @@ from swcpm import constant_packageURL, location_database
 from swcpm import constant_defaultAppInstallPATH, constant_defaultModInstallPATH
 
 from swcpm.wget.wget_func import wget_func, extract_archive
+from swcpm.remove.remove_command import remove_func
 
 
-def install_func(package, reinstall):
+def install_func(package, reinstall, update=False):
     package_url = f"{constant_packageURL}/{package}"
     package_url_json = f"{package_url}/package.json"
     resp = requests.get(package_url_json)
+    if resp.status_code != 200:
+        echo(f"Specified Package '{package}' does not exist.")
+        return
     package_data = resp.json()
     package_file = f"{package_url}/{package_data['id']}.zip"
 
@@ -25,12 +29,18 @@ def install_func(package, reinstall):
     install_dir_file = os.path.join(install_dir, f"{package}.zip")
     installed = os.path.exists(os.path.join(install_dir, "package.json"))
 
-    if not installed or (installed and reinstall):
-        # if not os.access(install_dir, 1):
-        #     echo(f"PermissionError: Access to this installation path ('{install_dir}') is not permitted")
-        #     return
+    if not installed or (installed and reinstall) or update:
+        if reinstall:
+            remove_func(package)
 
-        os.makedirs(install_dir, exist_ok=True)
+        try:
+            os.makedirs(install_dir, exist_ok=True)
+        except PermissionError:
+            echo("Error: Could not create installation directory")
+        if not os.access(install_dir, os.W_OK):
+            echo(f"PermissionError: Access to this installation path ('{install_dir}') is not permitted")
+            return
+
         with open(os.path.join(install_dir, "package.json"), "w") as f:
             f.write(resp.text)
 
@@ -44,6 +54,20 @@ def install_func(package, reinstall):
 
         os.remove(install_dir_file)
         location_database.set_location(package, install_dir)
+
+        package_requirements = package_data["requirements"]
+        if type(package_requirements) == dict:
+            for req_type in package_requirements:
+                install_packages(package_requirements[req_type], req_type, reinstall)
+        elif type(package_requirements) == list:
+            if len(package_requirements) > 0:
+                echo(f"Additional Packages required: {package_requirements}")
+                echo("Installing them all...")
+                install_packages(package_requirements, "swcpm", reinstall)
+        else:
+            echo("Error while parsing Package requirements")
+            return
+
         echo("Installation successful")
     else:
         with open(os.path.join(install_dir, "package.json"), "r") as f:
@@ -54,3 +78,16 @@ def install_func(package, reinstall):
 
     echo(f"Package can be run with command: 'swcpm run {package}'")
 
+
+def install_packages(packages, p_type, reinstall):
+    if p_type == "python":
+        cmd = ["python" if platform.system() == "win32" else "python3", "-m", "pip", "install"]
+        for package in packages:
+            cmd.append(package)
+        cmd.append("--upgrade")
+        os.system(" ".join(cmd))
+    elif p_type == "swcpm":
+        for package in packages:
+            install_func(package, reinstall, update=True)
+    else:
+        raise Exception("Argument Exception", f"Unknown requirement type: '{p_type}'")

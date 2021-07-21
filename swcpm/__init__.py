@@ -39,7 +39,6 @@ class LocationDatabase:
 
 
 _param_verbose = False
-_param_old_api = False
 
 constant_projectURL = "https://projects.software-city.org/resources"
 constant_packageURL = "https://projects.software-city.org/resources/swc_packages"
@@ -55,10 +54,6 @@ def get_option_verbose():
     return _param_verbose
 
 
-def get_option_old_api():
-    return _param_old_api
-
-
 def verbose_echo(*strings):
     if _param_verbose:
         for string in strings:
@@ -67,9 +62,7 @@ def verbose_echo(*strings):
 
 @click.group()
 @click.option("-v", "--verbose", is_flag=True, help="Show more info while running.")
-@click.option("--old_api", is_flag=True, help="Use old SWC API.")
-def swc_pm(verbose, old_api):
-    global _param_verbose, _param_old_api
+def swc_pm(verbose):
+    global _param_verbose
 
     _param_verbose = verbose
-    _param_old_api = old_api

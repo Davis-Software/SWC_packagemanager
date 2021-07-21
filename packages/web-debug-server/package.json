@@ -1,0 +1,10 @@
+{
+    "id": "web-debug-server",
+    "type": "python",
+    "version": "1.3",
+    "exec": "main",
+    "requirements": {
+        "python": ["flask", "flask_socketio", "watchdog"]
+    },
+    "platforms": ["win32", "linux", "darwin"]
+}
