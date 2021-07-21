@@ -7,6 +7,7 @@
 * `info <package>` Gives into about a package
 * `install <package>` Installs a package
 * `run <package>` Runs executable packages
+* `update <package>` Update a package
 * `remove <package>` Removes a package
 * `wget <url>` Uses built-in installer like linux wget
 * `debug` Lists all command modules
