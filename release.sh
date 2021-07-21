@@ -1,3 +1,0 @@
-python3 -m build
-twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-# token: pypi-AgEIcHlwaS5vcmcCJDU0Y2FkZmQyLWVjNWMtNDUzMS04ODI1LTQ1NDA3OWU1NTE4MQACNnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJzd2NwbSJdfSwgInZlcnNpb24iOiAxfQAABiB2_Nm2JjYlrmdBbqtHymk2RscZ0pogcbiX6xKb64ixJA
