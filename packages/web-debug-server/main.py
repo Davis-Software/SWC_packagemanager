@@ -31,7 +31,7 @@ def run_func(path):
     os.chdir(path)
     os.system(" ".join(
         [
-            "python" if platform.system() == "win32" else "python3",
+            "python" if platform.system() == "windows" else "python3",
             os.path.join(path, "main.py"),
         ]
     ))

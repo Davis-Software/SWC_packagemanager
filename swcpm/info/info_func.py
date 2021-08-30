@@ -22,11 +22,11 @@ def format_type(var):
     elif var_type == list:
         if not var:
             return "none"
-        return " / ".join(var)
+        return ", ".join(var)
     elif var_type == dict:
         rt = str()
         for key in var:
-            rt += f"\n    {key}: '{var[key]}'"
+            rt += f"\n    {key}: {format_type(var[key])}"
         return rt
     else:
         return var

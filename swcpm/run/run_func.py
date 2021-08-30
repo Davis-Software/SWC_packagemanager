@@ -25,6 +25,6 @@ def run_func(package, args):
         arg_li = list()
         for arg in args:
             arg_li.append(arg)
-        os.system(f"{'python' if platform.system() == 'win32' else 'python3'} {os.path.join(install_dir, execution_target)}.py " + " ".join(arg_li))
+        os.system(f"{'python' if platform.system() == 'windows' else 'python3'} {os.path.join(install_dir, execution_target)}.py " + " ".join(arg_li))
     else:
         echo(f"Unknown package type: '{execution_type}' - Target '{execution_target}' is not executable")

@@ -44,7 +44,7 @@ constant_projectURL = "https://projects.software-city.org/resources"
 constant_packageURL = "https://projects.software-city.org/resources/swc_packages"
 
 constant_tempPATH = tempfile.gettempdir()
-constant_defaultAppInstallPATH = "C:\\Program Files\\SWC" if platform.system() == "win32" else "/usr/swc"
+constant_defaultAppInstallPATH = "C:\\Program Files\\SWC" if platform.system() == "windows" else "/usr/swc"
 constant_defaultModInstallPATH = os.path.join(str(Path.home()), "SWC", "Packages")
 
 location_database = LocationDatabase()

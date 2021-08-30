@@ -81,7 +81,7 @@ def install_func(package, reinstall, update=False):
 
 def install_packages(packages, p_type, reinstall):
     if p_type == "python":
-        cmd = ["python" if platform.system() == "win32" else "python3", "-m", "pip", "install"]
+        cmd = ["python" if platform.system() == "windows" else "python3", "-m", "pip", "install"]
         for package in packages:
             cmd.append(package)
         cmd.append("--upgrade")

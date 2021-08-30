@@ -28,7 +28,7 @@ setup(
         ]
     },
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 2 - Active Development',
         'Environment :: Console',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',

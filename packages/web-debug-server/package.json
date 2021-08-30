@@ -6,5 +6,5 @@
     "requirements": {
         "python": ["flask", "flask_socketio", "watchdog"]
     },
-    "platforms": ["win32", "linux", "darwin"]
+    "platforms": ["windows", "linux", "darwin"]
 }

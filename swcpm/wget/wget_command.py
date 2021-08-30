@@ -6,7 +6,7 @@ from .wget_func import wget_func
 @click.option("-n", "-f", "--filename", type=click.Path(), help="Custom path and name under which the downloaded file is saved")
 @click.argument("url", type=click.STRING)
 def wget(url, filename):
-    """Like 'wget' in linux.
+    """Like 'wget' in Linux.
 
     \b
     Arguments:
